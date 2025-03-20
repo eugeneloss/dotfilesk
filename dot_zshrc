@@ -23,10 +23,6 @@ export FZF_DEFAULT_OPTS="--no-mouse --height 50% --reverse --multi --inline-info
   --bind 'ctrl-a:select-all+accept' \
   --bind 'ctrl-y:execute-silent(echo {+} | wl-copy)'"
 
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
 # Uncomment one of the following lines to change the auto-update behavior
 # zstyle ':omz:update' mode disabled  # disable automatic updates
 # zstyle ':omz:update' mode auto      # update automatically without asking
