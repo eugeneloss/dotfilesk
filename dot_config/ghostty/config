@@ -1,0 +1,5 @@
+confirm-close-surface = false
+window-height = 1080
+window-width = 1920
+#theme = BlueBerryPie
+#custom-shader = shaders/in-game-crt.glsl
