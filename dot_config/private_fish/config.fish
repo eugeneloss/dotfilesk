@@ -1,49 +1,27 @@
 if status is-interactive
-    # Commands to run in interactive sessions can go here
+    # Atuin shell history
     atuin init fish | source
-end
-# Check if the fish prompt is active and TMUX is not running
-if test -n "$fish_prompt" && test -z "$TMUX"
-  tmux -u new-session -A -s main
-end
-# Enable Vi mode
-fish_vi_key_bindings
 
-# Optional: Set cursor shape (block in normal mode, line in insert mode)
-function fish_mode_prompt
-  # Do nothing (removes the default mode indicator)
-end
+    # Enable Vi mode and cursor settings
+    set fish_cursor_default     block      # Default cursor (normal mode)
+    set fish_cursor_insert      line       # Insert mode
+    set fish_cursor_replace_one underscore # Replace mode
+    set fish_cursor_visual      block      # Visual mode
+    fish_vi_key_bindings
 
-set fish_cursor_default     block      # Default cursor (normal mode)
-set fish_cursor_insert      line       # Insert mode
-set fish_cursor_replace_one underscore # Replace mode
-set fish_cursor_visual      block      # Visual mode
-
-function fish_mode_prompt
-  switch $fish_bind_mode
-    case default
-      echo "[NORMAL] "
-    case insert
-      echo "[INSERT] "
-    case replace_one
-      echo "[REPLACE] "
-    case visual
-      echo "[VISUAL] "
-  end
-end
-#magic_enter
-function _magic_enter
-    if test -z (commandline)
-        eza --color=always --icons --long --group-directories-first -h
-        commandline -f repaint
-    else
-        commandline -f execute
+    # TMUX auto-start (only in interactive sessions)
+    if test -z "$TMUX" && test -z "$TMUX"
+        tmux -u new-session -A -s main
     end
-end
 
-bind \r '_magic_enter'
-abbr v "nvim"
-abbr gs "git status"
-abbr gc "git commit -m"
-abbr gp "git push origin master"
-abbr c "clear"
+
+    # Key bindings
+    bind \r '_magic_enter'
+
+    # Abbreviations
+    abbr v "nvim"
+    abbr gs "git status"
+    abbr gc "git commit -m"
+    abbr gp "git push origin master"
+    abbr c "clear"
+end
