@@ -6,6 +6,44 @@ end
 if test -n "$fish_prompt" && test -z "$TMUX"
   tmux -u new-session -A -s main
 end
+# Enable Vi mode
+fish_vi_key_bindings
+
+# Optional: Set cursor shape (block in normal mode, line in insert mode)
+function fish_mode_prompt
+  # Do nothing (removes the default mode indicator)
+end
+
+set fish_cursor_default     block      # Default cursor (normal mode)
+set fish_cursor_insert      line       # Insert mode
+set fish_cursor_replace_one underscore # Replace mode
+set fish_cursor_visual      block      # Visual mode
+
+function fish_mode_prompt
+  switch $fish_bind_mode
+    case default
+      echo "[NORMAL] "
+    case insert
+      echo "[INSERT] "
+    case replace_one
+      echo "[REPLACE] "
+    case visual
+      echo "[VISUAL] "
+  end
+end
+#magic_enter
+function _magic_enter
+    if test -z (commandline)
+        eza --color=always --icons --long --group-directories-first -h
+        commandline -f repaint
+    else
+        commandline -f execute
+    end
+end
+
+bind \r '_magic_enter'
 abbr v "nvim"
 abbr gs "git status"
+abbr gc "git commit -m"
+abbr gp "git push origin master"
 abbr c "clear"
