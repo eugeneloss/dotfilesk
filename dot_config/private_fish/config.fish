@@ -9,6 +9,9 @@ if status is-interactive
     set fish_cursor_visual      block      # Visual mode
     fish_vi_key_bindings
 
+    # Set editor
+    set -gx EDITOR nvim
+    set -gx VISUAL nvim
     # TMUX auto-start (only in interactive sessions)
     if test -z "$TMUX" && test -z "$TMUX"
         tmux -u new-session -A -s main
