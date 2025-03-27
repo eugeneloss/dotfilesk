@@ -1,6 +1,7 @@
 if status is-interactive
     # Atuin shell history
     atuin init fish | source
+end
 
     # Enable Vi mode and cursor settings
     set fish_cursor_default     block      # Default cursor (normal mode)
@@ -27,4 +28,3 @@ if status is-interactive
     abbr gc "git commit -m"
     abbr gp "git push origin master"
     abbr c "clear"
-end
